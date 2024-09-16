@@ -10,7 +10,7 @@ public class Blackjack {
         System.out.println("We shall see..");
         System.out.println("..Ready? Press anything to begin!");
 
-        // scan.nextLine();
+        scan.nextLine();
 
         int card1 = drawRandomCard();
         int card2 = drawRandomCard();
@@ -41,6 +41,28 @@ public class Blackjack {
                 System.out.println("Player loses (((((");
                 System.exit(0);
             }
+        }
+
+        System.out.println("\nDealer`s turn");
+        System.out.println("\n The dealers`s card are \n" + cardString(dealerCard1) + cardString(dealerCard2));
+        System.out.println("dealers`s total is: " + dealerTotal);
+
+        while (dealerTotal < 17) {
+            int newCard = drawRandomCard();
+            dealerTotal += Math.min(newCard, 10);
+            System.out.println("\n Dealer gets a \n" + cardString(newCard));
+            System.out.println("Dealers`s total is: " + dealerTotal);
+        }
+
+        if (dealerTotal > 21) {
+            System.out.println("Bust! Dealer is LOOOSE");
+            System.exit(0);
+        }
+
+        if (total > dealerTotal) {
+            System.out.println("Player wins!!");
+        } else {
+            System.out.println("Dealer wins");
         }
 
         scan.close();
@@ -167,20 +189,6 @@ public class Blackjack {
                 "  |  J  |\n" +
                 "  |_____|\n";
     }
-
-    /**
-     * Task 7 – make a function that asks the user to hit or stay.
-     * Function name – hitOrStay
-     * 
-     * @return (String)
-     *
-     *         Inside the function:
-     *         1. Asks the user to hit or stay.
-     *         2. If the user doesn't enter "hit" or "stay", keep asking them to try
-     *         again by printing:
-     *         Please write 'hit' or 'stay'
-     *         3. Returns the user's option
-     */
 
     public static String hitOrStay() {
         System.out.println("Would you like hit or stay?");
